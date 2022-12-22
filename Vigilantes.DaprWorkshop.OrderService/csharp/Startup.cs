@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Vigilantes.DaprWorkshop.OrderService.Services;
 
 namespace Vigilantes.DaprWorkshop.OrderService
 {
@@ -30,6 +31,8 @@ namespace Vigilantes.DaprWorkshop.OrderService
                    builder.AllowAnyMethod();
                });
             });
+
+            services.AddScoped<IEventPublish, DaprEventPublish>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

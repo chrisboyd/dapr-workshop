@@ -1,0 +1,25 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+spec:
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    secretKeyRef:
+      name: redisHost
+      key: redisHost
+  - name: redisPassword
+    secretKeyRef:
+      name: redisPasswd
+      key: redisPasswd
+  - name: enableTLS
+    value: "true"
+scopes:
+- loyalty-service
+- order-service
+- make-line-service
+- receipt-generation-service
+auth:
+  secretStore: azurekeyvault
